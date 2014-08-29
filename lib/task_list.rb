@@ -67,12 +67,16 @@ private
   end
 
   def add_task(project, description)
-    project_tasks = @tasks[project]
+    project_tasks = get_project_tasks(project)
     if project_tasks.nil?
       @output.printf("Could not find a project with the name \"%s\".\n", project)
       return
     end
     project_tasks << Task.new(next_id, description, false)
+  end
+
+  def get_project_tasks(project)
+    @tasks[project]
   end
 
   def check(id_string)

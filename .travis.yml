@@ -1,5 +1,0 @@
-language: java
-install:
-  - (cd java && mvn install -DskipTests=true)
-script:
-  - (cd java && mvn test)

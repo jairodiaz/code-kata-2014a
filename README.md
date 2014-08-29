@@ -1,4 +1,4 @@
-# Task List &nbsp; [![Build Status](https://travis-ci.org/codurance/task-list.png)](https://travis-ci.org/codurance/task-list)
+# Task List
 
 This is an example of code obsessed with primitives.
 

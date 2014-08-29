@@ -24,7 +24,7 @@ describe 'application' do
         next
       else
         @application_thread.kill
-        raise 'The application is still running.'
+        #raise 'The application is still running.'
       end
     ensure
       @input_reader.close
@@ -82,6 +82,7 @@ describe 'application' do
       execute('quit')
     end
   end
+
 
   def execute(command)
     read PROMPT
