@@ -1,4 +1,5 @@
 require_relative 'task'
+require_relative 'show_command'
 
 class TaskList
   QUIT = 'quit'
@@ -43,13 +44,7 @@ private
   end
 
   def show
-    @tasks.each do |project_name, project_tasks|
-      @output.puts project_name
-      project_tasks.each do |task|
-        @output.printf("  [%c] %d: %s\n", (task.done? ? 'x' : ' '), task.id, task.description)
-      end
-      @output.puts
-    end
+    @output.puts ShowCommand.new(@tasks).execute('show')
   end
 
   def add(command_line)

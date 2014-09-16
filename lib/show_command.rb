@@ -11,7 +11,7 @@ class ShowCommand
     @tasks.each do |project_name, project_tasks|
       output << "#{project_name}\n"
       project_tasks.each do |task|
-        output << sprintf("  [%c] %d: %s\n", (' '), i+=1, task)
+        output << sprintf("  [%c] %d: %s\n", (task.done? ? 'x' : ' '), i+=1, task.description)
       end
       output << "\n"
     end

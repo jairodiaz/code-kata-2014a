@@ -18,8 +18,8 @@ describe 'Show Command' do
     let(:command) { ShowCommand.new(@project_hash) }
 
     before do
-
-      @project_hash = { secrets: ['Eat more donuts.'] }
+      task1 = Task.new(1, 'Eat more donuts.', false)
+      @project_hash = { secrets: [task1] }
     end
 
     it 'should return a project with its task' do
@@ -36,10 +36,13 @@ describe 'Show Command' do
     let(:command) { ShowCommand.new(@project_hash) }
 
     before do
+      task1 = Task.new(1, 'Eat more donuts.', false)
+      task2 = Task.new(2, 'Destroy all humans.', false)
+
       @project_hash = {
         secrets: [
-          'Eat more donuts.',
-          'Destroy all humans.'
+          task1,
+          task2
         ]
       }
     end
@@ -58,16 +61,20 @@ describe 'Show Command' do
     let(:command) { ShowCommand.new(@project_hash) }
 
     before do
+      task1 = Task.new(1, 'Eat more donuts.', false)
+      task2 = Task.new(2, 'Destroy all humans.', false)
+      task3 = Task.new(3, 'Four Elements of Simple Design', false)
+      task4 = Task.new(4, 'SOLID', false)
+
       @project_hash = {
         secrets: [
-          'Eat more donuts.',
-          'Destroy all humans.'
+          task1,
+          task2
         ],
         training: [
-          'Four Elements of Simple Design',
-          'SOLID'
+          task3,
+          task4
         ]
-
       }
     end
 
