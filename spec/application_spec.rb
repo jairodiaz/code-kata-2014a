@@ -1,6 +1,7 @@
 require 'rspec'
 require 'stringio'
 require 'timeout'
+require 'date'
 
 require_relative '../lib/task_list'
 
@@ -97,10 +98,10 @@ describe 'application' do
         ''
       )
 
-      execute('deadline 1 2013-1-31')
+      execute("deadline 1 #{DateTime.now.strftime("%d/%m/%Y")}")
       execute('today')
       read_lines(
-        'Due today: 2013-1-31',
+        "Due today: #{DateTime.now.strftime("%d/%m/%Y")}",
         'Eat more donuts.',
         ''
       )
