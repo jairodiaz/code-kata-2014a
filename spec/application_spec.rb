@@ -83,6 +83,30 @@ describe 'application' do
     end
   end
 
+  it 'has deadlines' do
+    Timeout::timeout 1 do
+      execute('show')
+
+      execute('add project secrets')
+      execute('add task secrets Eat more donuts.')
+
+      execute('show')
+      read_lines(
+        'secrets',
+        '  [ ] 1: Eat more donuts.',
+        ''
+      )
+
+      execute('deadline 1 2013-1-31')
+      execute('today')
+      read_lines(
+        'Due today: 2013-1-31',
+        'Eat more donuts.',
+        ''
+      )
+    end
+  end
+
 
   def execute(command)
     read PROMPT
