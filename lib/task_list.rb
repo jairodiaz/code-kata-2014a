@@ -23,7 +23,7 @@ class TaskList
     end
   end
 
-private
+ private
 
   def execute(command_line)
     command, rest = command_line.split(/ /, 2)
@@ -38,6 +38,8 @@ private
       uncheck rest
     when 'help'
       help
+    when 'deadline'
+      deadline
     else
       error command
     end
@@ -103,6 +105,11 @@ private
     @output.puts('  add task <project name> <task description>')
     @output.puts('  check <task ID>')
     @output.puts('  uncheck <task ID>')
+    @output.puts()
+  end
+
+  def deadline
+    @output.puts('Success')
     @output.puts()
   end
 

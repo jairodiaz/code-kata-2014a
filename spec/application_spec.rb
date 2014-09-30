@@ -84,7 +84,7 @@ describe 'application' do
     end
   end
 
-  it 'has deadlines' do
+  it 'has deadlines for a task' do
     Timeout::timeout 1 do
       execute('show')
 
@@ -99,6 +99,10 @@ describe 'application' do
       )
 
       execute("deadline 1 #{DateTime.now.strftime("%d/%m/%Y")}")
+      read_lines(
+        'Success',
+        ''
+      )
       execute('today')
       read_lines(
         "Due today: #{DateTime.now.strftime("%d/%m/%Y")}",
