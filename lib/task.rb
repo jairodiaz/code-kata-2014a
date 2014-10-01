@@ -1,6 +1,7 @@
 class Task
   attr_reader :id, :description
   attr_accessor :done
+  attr_accessor :deadline
 
   def initialize(id, description, done)
     @id = id
