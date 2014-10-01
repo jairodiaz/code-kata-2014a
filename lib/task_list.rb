@@ -39,7 +39,7 @@ class TaskList
     when 'help'
       help
     when 'deadline'
-      deadline
+      deadline rest
     else
       error command
     end
@@ -108,7 +108,7 @@ class TaskList
     @output.puts()
   end
 
-  def deadline
+  def deadline(id_string)
     @output.puts('Success')
     @output.puts()
   end

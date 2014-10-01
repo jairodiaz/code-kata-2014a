@@ -12,22 +12,26 @@ describe TaskList do
     TaskList.new(@input_reader, @output_writer)
   end
 
-  it 'should suppor the command \'deadline\'' do
-   task_list.execute('deadline')
-   read_lines(
-     "Success",
-     ""
-   )
-  end
+  context 'Deadline command' do
+    context 'When the task exist' do
+      it 'should suppor the command \'deadline\'' do
+       task_list.execute('deadline')
+       read_lines(
+         "Success",
+         ""
+       )
+      end
+    end
 
-  def read(expected_output)
-    actual_output = @output_reader.read(expected_output.length)
-    expect(actual_output).to eq expected_output
-  end
+    def read(expected_output)
+      actual_output = @output_reader.read(expected_output.length)
+      expect(actual_output).to eq expected_output
+    end
 
-  def read_lines(*expected_output)
-    expected_output.each do |line|
-      read "#{line}\n"
+    def read_lines(*expected_output)
+      expected_output.each do |line|
+        read "#{line}\n"
+      end
     end
   end
 end
