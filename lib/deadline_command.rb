@@ -4,12 +4,14 @@ class DeadlineCommand
   end
 
   def execute(command_line)
-    command, id = Shellwords.split(command_line)
-    return "Please enter a task ID\n" if id.nil?
+    command, id, dateline = Shellwords.split(command_line)
+    return "Please enter a task ID and deadline\n" if id.nil?
+    return "Please enter a deadline." if dateline.nil?
 
     task = find_task(id)
     return "Could not find a task with an ID of #{id}.\n" unless task
 
+    task.deadline = DateTime.parse(dateline)
     "Success\n"
   end
 
