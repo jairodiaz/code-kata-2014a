@@ -13,17 +13,21 @@ describe DeadlineCommand do
 
   context 'when one or more arguments are missing' do
     it 'should fail when the task id and deadline are missing' do
-      expect(deadline_command.execute('deadline')).to eq "Please enter a task ID and deadline\n"
+      expect(deadline_command.execute('')).to eq "Please enter a task ID and deadline\n"
     end
 
     it 'should fail when the deadline is missing' do
-      expect(deadline_command.execute('deadline 1')).to eq "Please enter a deadline."
+      expect(deadline_command.execute('1')).to eq "Please enter a deadline.\n"
     end
   end
 
   context 'when the arguments are present' do
     it 'should fail when the task id is invalid' do
-      expect(deadline_command.execute('deadline 2 02/10/2014')).to eq "Could not find a task with an ID of 2.\n"
+      expect(deadline_command.execute('2 02/10/2014')).to eq "Could not find a task with an ID of 2.\n"
+    end
+
+    it 'should fail when the date is invalid' do
+      expect(deadline_command.execute('1 31/31/2014')).to eq "Please enter a valid date.\n"
     end
 
     context 'when the task is valid' do
@@ -32,12 +36,12 @@ describe DeadlineCommand do
         allow(task).to receive(:id).and_return(1)
         project_hash = { secrets: [task] }
 
-        expect(task).to receive(:deadline=)#.with("02/10/2014")
-        DeadlineCommand.new(project_hash).execute("deadline 1 02/10/2014")
+        expect(task).to receive(:deadline=).with(DateTime.parse('02/10/2014'))
+        DeadlineCommand.new(project_hash).execute('1 02/10/2014')
       end
 
       it 'should return a success message' do
-        expect(deadline_command.execute('deadline 1 02/10/2014')).to eq "Success\n"
+        expect(deadline_command.execute('1 02/10/2014')).to eq "Success\n"
       end
     end
   end

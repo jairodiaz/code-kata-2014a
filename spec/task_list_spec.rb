@@ -17,8 +17,7 @@ describe TaskList do
       it 'should suppor the command \'deadline\'' do
        task_list.execute('deadline')
        read_lines(
-         "Success",
-         ""
+         "Please enter a task ID and deadline"
        )
       end
     end

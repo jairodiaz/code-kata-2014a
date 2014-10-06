@@ -1,5 +1,6 @@
 require_relative 'task'
 require_relative 'show_command'
+require_relative 'deadline_command'
 
 class TaskList
   QUIT = 'quit'
@@ -108,9 +109,8 @@ class TaskList
     @output.puts()
   end
 
-  def deadline(id_string)
-    @output.puts('Success')
-    @output.puts()
+  def deadline(id_and_date)
+    @output.puts DeadlineCommand.new(@tasks).execute(id_and_date)
   end
 
   def error(command)
