@@ -1,3 +1,6 @@
+require 'shellwords'
+require 'date'
+
 class DeadlineCommand
   def initialize(list_of_tasks = nil)
     @tasks = list_of_tasks

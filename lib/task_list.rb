@@ -37,6 +37,8 @@ class TaskList
     case command
     when 'show'
       show
+    when 'deadline'
+      deadline rest
     when 'add'
       add rest
     when 'check'
@@ -45,15 +47,13 @@ class TaskList
       uncheck rest
     when 'help'
       help
-    when 'deadline'
-      deadline rest
     else
       error command
     end
   end
 
   def show
-    @output.puts ShowCommand.new(@tasks).execute('show')
+    @output.puts @commands['show'].execute('show')
   end
 
   def add(command_line)
@@ -116,7 +116,7 @@ class TaskList
   end
 
   def deadline(id_and_date)
-    @output.puts DeadlineCommand.new(@tasks).execute(id_and_date)
+    @output.puts @commands['deadline'].execute(id_and_date)
   end
 
   def error(command)
