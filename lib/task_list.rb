@@ -4,12 +4,18 @@ require_relative 'deadline_command'
 
 class TaskList
   QUIT = 'quit'
+  attr_accessor :commands
 
   def initialize(input, output)
     @input = input
     @output = output
 
     @tasks = {}
+    @commands = {
+      'show' => ShowCommand.new(@tasks),
+      'deadline' => DeadlineCommand.new(@tasks)
+    }
+
   end
 
   def run
