@@ -36,7 +36,7 @@ class TaskList
     command, rest = command_line.split(/ /, 2)
     case command
     when 'show'
-      show
+      show rest
     when 'deadline'
       deadline rest
     when 'add'
@@ -52,7 +52,7 @@ class TaskList
     end
   end
 
-  def show
+  def show(params)
     @output.puts @commands['show'].execute('show')
   end
 
