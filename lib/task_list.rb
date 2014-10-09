@@ -38,7 +38,7 @@ class TaskList
     when 'show'
       execute_command 'show', rest
     when 'deadline'
-      deadline rest
+      execute_command 'deadline', rest
     when 'add'
       add rest
     when 'check'
@@ -50,10 +50,6 @@ class TaskList
     else
       error command
     end
-  end
-
-  def show(params)
-    @output.puts @commands['show'].execute(params)
   end
 
   def deadline(id_and_date)
