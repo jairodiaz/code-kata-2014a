@@ -9,13 +9,15 @@ class TaskList
   def initialize(input, output)
     @input = input
     @output = output
-
     @tasks = {}
+    define_commands
+  end
+
+  def define_commands
     @commands = {
       'show' => ShowCommand.new(@tasks),
       'deadline' => DeadlineCommand.new(@tasks)
     }
-
   end
 
   def run
@@ -35,10 +37,8 @@ class TaskList
   def execute(command_line)
     command, rest = command_line.split(/ /, 2)
     case command
-    when 'show'
-      execute_command 'show', rest
-    when 'deadline'
-      execute_command 'deadline', rest
+    when 'show', 'deadline'
+      execute_command command, rest
     when 'add'
       add rest
     when 'check'
