@@ -52,10 +52,6 @@ class TaskList
     end
   end
 
-  def deadline(id_and_date)
-    @output.puts @commands['deadline'].execute(id_and_date)
-  end
-
   def execute_command(command, arguments)
     @output.puts @commands[command].execute(arguments)
   end
